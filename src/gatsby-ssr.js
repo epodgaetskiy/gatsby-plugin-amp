@@ -222,7 +222,7 @@ export const replaceRenderer = (
       const attributes = Object.keys(image.attributes);
       const includedAttributes = attributes.map(key => {
         const attribute = image.attributes[key];
-        if (!invalidAttributes.includes(attribute.name)) {
+        if (!invalidAttributes.image.includes(attribute.name)) {
           ampImage.setAttribute(attribute.name, attribute.value);
         }
         return attribute.name;
