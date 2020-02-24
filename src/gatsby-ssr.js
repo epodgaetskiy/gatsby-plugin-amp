@@ -197,6 +197,11 @@ export const replaceRenderer = (
       layout: "responsive"
     }
   };
+
+  const invalidAttributes = {
+    image: ["importance", "intrinsicsize", "loading"]
+  };
+
   const headComponents = [];
   const isAmp = pathname && pathname.indexOf(pathIdentifier) > -1;
   if (isAmp) {
@@ -217,7 +222,9 @@ export const replaceRenderer = (
       const attributes = Object.keys(image.attributes);
       const includedAttributes = attributes.map(key => {
         const attribute = image.attributes[key];
-        ampImage.setAttribute(attribute.name, attribute.value);
+        if (!invalidAttributes.includes(attribute.name)) {
+          ampImage.setAttribute(attribute.name, attribute.value);
+        }
         return attribute.name;
       });
       Object.keys(defaults.image).forEach(key => {
@@ -308,9 +315,7 @@ export const replaceRenderer = (
           <script
             async
             custom-element={component.name}
-            src={`https://cdn.ampproject.org/v0/${component.name}-${
-              component.version
-            }.js`}
+            src={`https://cdn.ampproject.org/v0/${component.name}-${component.version}.js`}
           />
         </Fragment>
       ))
