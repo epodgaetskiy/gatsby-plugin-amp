@@ -235,6 +235,13 @@ export const replaceRenderer = (
       image.parentNode.replaceChild(ampImage, image);
     });
 
+    // remove picture with webp
+    const pictures = [].slice.call(document.getElementsByTagName("picture"));
+    pictures.forEach(picture => {
+      const ampImg = picture.getElementsByTagName("amp-img");
+      picture.parentNode.replaceChild(ampImg[0], picture);
+    });
+
     // convert twitter posts to amp-twitter
     const twitterPosts = [].slice.call(
       document.getElementsByClassName("twitter-tweet")
