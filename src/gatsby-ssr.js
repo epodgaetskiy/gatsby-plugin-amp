@@ -101,11 +101,11 @@ export const onPreRenderHTML = (
       includedPaths.findIndex(_path => minimatch(pathname, _path)) > -1) ||
     (excludedPaths.length === 0 && includedPaths.length === 0)
   ) {
+    console.log(pathname, excludedPaths);
     replaceHeadComponents([
       <link
         rel="amphtml"
         key="gatsby-plugin-amp-amphtml-link"
-        pathname={pathname}
         href={interpolate(relAmpHtmlPattern, {
           canonicalBaseUrl,
           pathIdentifier,
