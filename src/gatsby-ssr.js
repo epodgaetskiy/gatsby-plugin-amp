@@ -105,6 +105,7 @@ export const onPreRenderHTML = (
       <link
         rel="amphtml"
         key="gatsby-plugin-amp-amphtml-link"
+        pathname={pathname}
         href={interpolate(relAmpHtmlPattern, {
           canonicalBaseUrl,
           pathIdentifier,
